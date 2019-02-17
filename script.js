@@ -1,3 +1,5 @@
+// source: http://drum-machine.maryrosecook.com/
+
 let audio = new AudioContext();
 
 function createSineWave() {
