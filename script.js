@@ -48,5 +48,11 @@ function createTrack(color, playSound) {
 
 let data = {
   step: 0,
-  tracks: []
+  tracks: [createTrack("gold", note(audio, 440))]
+}
+
+let screen = document.getElementById("screen").getContext("2d");
+
+function draw() {
+  // draw some stuff
 }
