@@ -22,12 +22,18 @@ function createAmplifier(audio, startValue, duration) {
   return amplifier;
 };
 
+function chain(items) {
+  for(let i = 0; i < items.length - 1; i++) {
+    items[i].connect(items[i + 1]);
+  }
+}
+
 function note(audio, frequency) {
   return function() {
     let duration = 1;
     let sineWave = createSineWave(audio, duration);
     
-    sineWave.connect(audio.destination);
+    chain([sineWave, createAmplifier(audio, 0.2, duration), audio.destination]);
   }
 };
 
