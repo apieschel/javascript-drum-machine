@@ -11,8 +11,15 @@ function createSineWave(audio, duration) {
   return oscillator;
 };
 
-function createAmplifier(audio, startValue, duartion) {
+function rampDown(audio, item, startValue, duration) {
+  item.setValueAtTime(startValue, audio.currentTime);
+  item.exponentialRampToValueAtTime(0.01, audio.currentTime + duration);
+};
 
+function createAmplifier(audio, startValue, duration) {
+  let amplifier = audio.createGain();
+  rampDown(audio, amplifier.gain, startValue, duration);
+  return amplifier;
 };
 
 function note(audio, frequency) {
