@@ -51,8 +51,17 @@ let data = {
   tracks: [createTrack("gold", note(audio, 440))]
 }
 
+function drawTracks(screen, data) {
+  data.tracks.forEach(function(track, row) {
+    track.steps.forEach(function(on, column) {
+      drawButton(screen, column, row, on ? track.color : "lightgray");
+    });
+  });
+}
+
 let screen = document.getElementById("screen").getContext("2d");
 
-function draw() {
-  // draw some stuff
-}
+(function draw() {
+  drawTracks(screen, data);
+  requestAnimationFrame(draw);
+})();
