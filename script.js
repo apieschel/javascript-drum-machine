@@ -37,4 +37,16 @@ function note(audio, frequency) {
   }
 };
 
-note(audio, 440)();
+function createTrack(color, playSound) {
+  let steps = [];
+  for(let i = 0; i < 16; i++) {
+    steps.push(false);
+  }
+  
+  return {steps: steps, color: color, playSound: playSound};
+}
+
+let data = {
+  step: 0,
+  tracks: []
+}
