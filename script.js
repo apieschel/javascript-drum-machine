@@ -34,6 +34,15 @@ function note(audio, frequency) {
   return function() {
     let duration = 1;
     let sineWave = createSineWave(audio, duration);
+    sineWave.frequency.value = frequency;
+    chain([sineWave, createAmplifier(audio, 0.2, duration), audio.destination]);
+  }
+};
+
+function kick(audio, frequency) {
+  return function() {
+    let duration = 2;
+    let sineWave = createSineWave(audio, duration);
     
     chain([sineWave, createAmplifier(audio, 0.2, duration), audio.destination]);
   }
@@ -84,6 +93,10 @@ function isPointInButton(p, column, row) {
 // update 
 setInterval(function() {
   data.step = (data.step + 1) % data.tracks[0].steps.length;
+  
+  data.tracks
+    .filter(function(track) { return track.steps[data.step]; })
+    .forEach(function(track) {track.playSound(); });
 }, 100);
 
 // draw 
