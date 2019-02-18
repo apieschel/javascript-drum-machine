@@ -2,6 +2,15 @@
 const BUTTON_SIZE = 26;
 const screen = document.getElementById("screen").getContext("2d");
 const audio = new AudioContext();
+const data = {
+  step: 0,
+  tracks: [createTrack("gold", note(audio, 880)),
+           createTrack("gold", note(audio, 659)),
+           createTrack("gold", note(audio, 587)),
+           createTrack("gold", note(audio, 523)),
+           createTrack("gold", note(audio, 440)),
+           createTrack("dodgerblue", kick(audio))]
+};
 
 function createSineWave(audio, duration) {
   let oscillator = audio.createOscillator();
@@ -43,8 +52,9 @@ function kick(audio, frequency) {
   return function() {
     let duration = 2;
     let sineWave = createSineWave(audio, duration);
+    rampDown(audio, sineWave.frequency, 160, duration);
     
-    chain([sineWave, createAmplifier(audio, 0.2, duration), audio.destination]);
+    chain([sineWave, createAmplifier(audio, 0.4, duration), audio.destination]);
   }
 };
 
@@ -54,11 +64,6 @@ function createTrack(color, playSound) {
     steps.push(false);
   }
   return {steps: steps, color: color, playSound: playSound};
-};
-
-let data = {
-  step: 0,
-  tracks: [createTrack("gold", note(audio, 440))]
 };
 
 function buttonPosition(column, row) {
