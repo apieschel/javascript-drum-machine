@@ -84,8 +84,10 @@ function drawTracks(screen, data) {
 (function setupButtonClicking() {
   addEventListener("click", function(e) {
     let p = { x: e.clientX, y: e.clientY };
-    data.tracks.forEach(function(on, column) {
-    
+    data.tracks.forEach(function(track, row) {
+      track.steps.forEach(function(on, column) {
+      
+      });
     });
   });
 })();
