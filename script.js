@@ -81,9 +81,15 @@ function isPointInButton(p, column, row) {
            p.y > b.y + BUTTON_SIZE);
 };
 
+// update 
+setInterval(function() {
+  data.step = (data.step + 1) % data.tracks[0].steps.length;
+}, 100);
+
 // draw 
 (function draw() {
   drawTracks(screen, data);
+  drawButton(screen, data.step, data.tracks.length, "deeppink");
   requestAnimationFrame(draw);
 })();
 
