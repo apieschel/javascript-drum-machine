@@ -88,6 +88,7 @@ setInterval(function() {
 
 // draw 
 (function draw() {
+  screen.clearRect(0, 0, screen.canvas.width, screen.canvas.height);
   drawTracks(screen, data);
   drawButton(screen, data.step, data.tracks.length, "deeppink");
   requestAnimationFrame(draw);
