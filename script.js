@@ -86,7 +86,9 @@ function drawTracks(screen, data) {
     let p = { x: e.clientX, y: e.clientY };
     data.tracks.forEach(function(track, row) {
       track.steps.forEach(function(on, column) {
-      
+        if(isPointInButton(p, column, row)) {
+            
+        }
       });
     });
   });
