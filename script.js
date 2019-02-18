@@ -1,4 +1,5 @@
 // source: http://drum-machine.maryrosecook.com/
+const BUTTON_SIZE = 26;
 let audio = new AudioContext();
 
 function createSineWave(audio, duration) {
@@ -49,6 +50,17 @@ function createTrack(color, playSound) {
 let data = {
   step: 0,
   tracks: [createTrack("gold", note(audio, 440))]
+}
+
+function buttonPosition(column, row) {
+  return {
+    x: BUTTON_SIZE / 2 + column * BUTTON_SIZE * 1.5,
+    y: BUTTON_SIZE / 2 + row * BUTTON_SIZE * 1.5
+  };
+}
+
+function drawButton(screen, column, row, color) {
+  let position = buttonPosition(column, row);
 }
 
 function drawTracks(screen, data) {
