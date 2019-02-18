@@ -61,6 +61,8 @@ function buttonPosition(column, row) {
 
 function drawButton(screen, column, row, color) {
   let position = buttonPosition(column, row);
+  screen.fillStyle = color;
+  screen.fillRect();
 }
 
 function drawTracks(screen, data) {
