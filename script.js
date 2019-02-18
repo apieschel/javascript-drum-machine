@@ -1,6 +1,7 @@
 // source: http://drum-machine.maryrosecook.com/
 const BUTTON_SIZE = 26;
-let audio = new AudioContext();
+const screen = document.getElementById("screen").getContext("2d");
+const audio = new AudioContext();
 
 function createSineWave(audio, duration) {
   let oscillator = audio.createOscillator();
@@ -62,7 +63,7 @@ function buttonPosition(column, row) {
 function drawButton(screen, column, row, color) {
   let position = buttonPosition(column, row);
   screen.fillStyle = color;
-  screen.fillRect();
+  screen.fillRect(position.x, position.y, BUTTON_SIZE, BUTTON_SIZE);
 }
 
 function drawTracks(screen, data) {
@@ -73,9 +74,18 @@ function drawTracks(screen, data) {
   });
 }
 
-let screen = document.getElementById("screen").getContext("2d");
-
+// draw 
 (function draw() {
   drawTracks(screen, data);
   requestAnimationFrame(draw);
+})();
+
+// handle events
+(function setupButtonClicking() {
+  addEventListener("click", function(e) {
+    let p = { x: e.clientX, y: e.clientY };
+    data.tracks.forEach(function(on, column) {
+    
+    });
+  });
 })();
