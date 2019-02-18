@@ -28,7 +28,7 @@ function chain(items) {
   for(let i = 0; i < items.length - 1; i++) {
     items[i].connect(items[i + 1]);
   }
-}
+};
 
 function note(audio, frequency) {
   return function() {
@@ -44,27 +44,26 @@ function createTrack(color, playSound) {
   for(let i = 0; i < 16; i++) {
     steps.push(false);
   }
-  
   return {steps: steps, color: color, playSound: playSound};
-}
+};
 
 let data = {
   step: 0,
   tracks: [createTrack("gold", note(audio, 440))]
-}
+};
 
 function buttonPosition(column, row) {
   return {
     x: BUTTON_SIZE / 2 + column * BUTTON_SIZE * 1.5,
     y: BUTTON_SIZE / 2 + row * BUTTON_SIZE * 1.5
   };
-}
+};
 
 function drawButton(screen, column, row, color) {
   let position = buttonPosition(column, row);
   screen.fillStyle = color;
   screen.fillRect(position.x, position.y, BUTTON_SIZE, BUTTON_SIZE);
-}
+};
 
 function drawTracks(screen, data) {
   data.tracks.forEach(function(track, row) {
@@ -72,7 +71,15 @@ function drawTracks(screen, data) {
       drawButton(screen, column, row, on ? track.color : "lightgray");
     });
   });
-}
+};
+
+function isPointInButton(p, column, row) {
+  let b = buttonPosition(column, row);
+  return !(p.x < b.x || 
+           p.y < b.y ||
+           p.x > b.x + BUTTON_SIZE ||
+           p.y > b.y + BUTTON_SIZE);
+};
 
 // draw 
 (function draw() {
@@ -87,7 +94,7 @@ function drawTracks(screen, data) {
     data.tracks.forEach(function(track, row) {
       track.steps.forEach(function(on, column) {
         if(isPointInButton(p, column, row)) {
-            
+          track.steps[column] = !on;    
         }
       });
     });
