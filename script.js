@@ -4,27 +4,23 @@ const screen = document.getElementById("screen").getContext("2d");
 const green = "#00BA8C";
 const orange = "#F15A2B";
 
-const kick = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fkick.wav?1548794293466');
-const snare = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fsnare1.wav?1548794294391');
-const ride = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fride1.wav?1548794293997');
-const congo = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fconga1.wav?1548794296100');
-const highTom = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Ftom1.wav?1548794296668');
-const lowTom = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Ftom2.wav?1548794295629');
-const cowbell = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fcowbell1.wav?1548794296801');
-const shaker = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fshaker.wav?1548794293831');
-const triangle = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Ftriangle1.wav?1548794295370');
+const kick = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_bassdrum.wav?1550690555700');
+const snare = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_snare.wav?1550690555419');
+const snareSide = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_snare_sidestick.wav?1550690555484');
+const conga = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_conga.wav?1550690555716');
+const congaHigh = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_conga_high.wav?1550690555911');
+const highHat = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Ftom2.wav?1548794295629');
+const openHat = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fcowbell1.wav?1548794296801');
 
 const data = {
   step: 0,
   tracks: [createTrack(green, kick),
            createTrack(green, snare),
-           createTrack(green, ride),
-           createTrack(green, congo),
-           createTrack(green, highTom),
-           createTrack(green, lowTom),
-           createTrack(green, cowbell),
-           createTrack(green, shaker),
-           createTrack(green, triangle)]
+           createTrack(green, snareSide),
+           createTrack(green, conga),
+           createTrack(green, congaHigh),
+           createTrack(green, highHat),
+           createTrack(green, openHat)]
 };
 
 /*
@@ -135,7 +131,7 @@ setInterval(function() {
 // handle events
 (function setupButtonClicking() {
   addEventListener("click", function(e) {
-    let p = { x: e.clientX, y: e.clientY };
+    let p = { x: e.offsetX, y: e.offsetY };
     console.log(p);
     data.tracks.forEach(function(track, row) {
       track.steps.forEach(function(on, column) {
