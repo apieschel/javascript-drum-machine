@@ -1,7 +1,7 @@
 // source: http://drum-machine.maryrosecook.com/
 const BUTTON_SIZE = 26;
 const screen = document.getElementById("screen").getContext("2d");
-const audio = new AudioContext();
+const audio = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fstick.wav?1548794294318');
 const data = {
   step: 0,
   tracks: [createTrack("gold", note(audio, 880)),
@@ -12,6 +12,7 @@ const data = {
            createTrack("dodgerblue", kick(audio))]
 };
 
+/*
 function createSineWave(audio, duration) {
   let oscillator = audio.createOscillator();
   oscillator.type = "sine";
@@ -21,6 +22,7 @@ function createSineWave(audio, duration) {
   
   return oscillator;
 };
+*/
 
 function rampDown(audio, item, startValue, duration) {
   item.setValueAtTime(startValue, audio.currentTime);
