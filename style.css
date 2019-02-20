@@ -1,9 +1,10 @@
-body, html {
+body {
   background: black;
-  height: 100%;
-  margin: 0;
-}
-
-.container {
-  display: flex; 
+  font-size: 1.15em;
+  text-rendering: optimizeLegibility;
+  width: 637px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px 0 10px;
+  text-align: justify;
 }

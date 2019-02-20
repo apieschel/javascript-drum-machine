@@ -136,6 +136,7 @@ setInterval(function() {
 (function setupButtonClicking() {
   addEventListener("click", function(e) {
     let p = { x: e.clientX, y: e.clientY };
+    console.log(p);
     data.tracks.forEach(function(track, row) {
       track.steps.forEach(function(on, column) {
         if(isPointInButton(p, column, row)) {
