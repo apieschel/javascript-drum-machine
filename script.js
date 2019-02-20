@@ -1,15 +1,21 @@
 // source: http://drum-machine.maryrosecook.com/
 const BUTTON_SIZE = 26;
 const screen = document.getElementById("screen").getContext("2d");
-const audio = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fstick.wav?1548794294318');
+
+const kick = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fkick.wav?1548794293466');
+const snare = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fsnare1.wav?1548794294391');
+const ride = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fride1.wav?1548794293997');
+const congo = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fconga1.wav?1548794296100');
+const highTom = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Ftom1.wav?1548794296668');
+const lowTom = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Ftom2.wav?1548794295629');
+const cowbell = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fcowbell1.wav?1548794296801');
+const shaker = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fshaker.wav?1548794293831');
+const triangle = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Ftriangle1.wav?1548794295370');
+
 const data = {
   step: 0,
-  tracks: [createTrack("gold", note(audio, 880)),
-           createTrack("gold", note(audio, 659)),
-           createTrack("gold", note(audio, 587)),
-           createTrack("gold", note(audio, 523)),
-           createTrack("gold", note(audio, 440)),
-           createTrack("dodgerblue", kick(audio))]
+  tracks: [createTrack("gold", kick),
+           createTrack("gold", snare)]
 };
 
 /*
@@ -22,7 +28,6 @@ function createSineWave(audio, duration) {
   
   return oscillator;
 };
-*/
 
 function rampDown(audio, item, startValue, duration) {
   item.setValueAtTime(startValue, audio.currentTime);
@@ -59,6 +64,7 @@ function kick(audio, frequency) {
     chain([sineWave, createAmplifier(audio, 0.4, duration), audio.destination]);
   }
 };
+*/
 
 function createTrack(color, playSound) {
   let steps = [];
@@ -103,7 +109,7 @@ setInterval(function() {
   
   data.tracks
     .filter(function(track) { return track.steps[data.step]; })
-    .forEach(function(track) {track.playSound(); });
+    .forEach(function(track) {console.log(track); track.playSound.play(); });
 }, 100);
 
 // draw 
