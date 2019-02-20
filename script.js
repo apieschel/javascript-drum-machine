@@ -116,7 +116,10 @@ setInterval(function() {
   
   data.tracks
     .filter(function(track) { return track.steps[data.step]; })
-    .forEach(function(track) {track.playSound.play(); });
+    .forEach(function(track) {
+      console.log(track.playSound);
+      track.playSound.play(); 
+    });
 }, 100);
 
 // draw 
