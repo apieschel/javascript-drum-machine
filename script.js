@@ -1,6 +1,8 @@
 // source: http://drum-machine.maryrosecook.com/
 const BUTTON_SIZE = 26;
 const screen = document.getElementById("screen").getContext("2d");
+const green = "#00BA8C";
+const orange = "#F15A2B";
 
 const kick = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fkick.wav?1548794293466');
 const snare = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fsnare1.wav?1548794294391');
@@ -14,15 +16,15 @@ const triangle = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4
 
 const data = {
   step: 0,
-  tracks: [createTrack("gold", kick),
-           createTrack("gold", snare),
-           createTrack("gold", ride),
-           createTrack("gold", congo),
-           createTrack("gold", highTom),
-           createTrack("gold", lowTom),
-           createTrack("gold", cowbell),
-           createTrack("gold", shaker),
-           createTrack("gold", triangle)]
+  tracks: [createTrack(green, kick),
+           createTrack(green, snare),
+           createTrack(green, ride),
+           createTrack(green, congo),
+           createTrack(green, highTom),
+           createTrack(green, lowTom),
+           createTrack(green, cowbell),
+           createTrack(green, shaker),
+           createTrack(green, triangle)]
 };
 
 /*
@@ -97,7 +99,7 @@ function drawButton(screen, column, row, color) {
 function drawTracks(screen, data) {
   data.tracks.forEach(function(track, row) {
     track.steps.forEach(function(on, column) {
-      drawButton(screen, column, row, on ? track.color : "lightgray");
+      drawButton(screen, column, row, on ? track.color : "ghostwhite");
     });
   });
 };
@@ -117,8 +119,8 @@ setInterval(function() {
   data.tracks
     .filter(function(track) { return track.steps[data.step]; })
     .forEach(function(track) {
-      console.log(track.playSound);
-      track.playSound.play(); 
+      let clone = track.playSound.cloneNode(true);
+      clone.play(); 
     });
 }, 100);
 
@@ -126,7 +128,7 @@ setInterval(function() {
 (function draw() {
   screen.clearRect(0, 0, screen.canvas.width, screen.canvas.height);
   drawTracks(screen, data);
-  drawButton(screen, data.step, data.tracks.length, "deeppink");
+  drawButton(screen, data.step, data.tracks.length, orange);
   requestAnimationFrame(draw);
 })();
 
