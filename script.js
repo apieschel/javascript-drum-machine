@@ -15,7 +15,14 @@ const triangle = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4
 const data = {
   step: 0,
   tracks: [createTrack("gold", kick),
-           createTrack("gold", snare)]
+           createTrack("gold", snare),
+           createTrack("gold", ride),
+           createTrack("gold", congo),
+           createTrack("gold", highTom),
+           createTrack("gold", lowTom),
+           createTrack("gold", cowbell),
+           createTrack("gold", shaker),
+           createTrack("gold", triangle)]
 };
 
 /*
@@ -109,7 +116,7 @@ setInterval(function() {
   
   data.tracks
     .filter(function(track) { return track.steps[data.step]; })
-    .forEach(function(track) {console.log(track); track.playSound.play(); });
+    .forEach(function(track) {track.playSound.play(); });
 }, 100);
 
 // draw 
