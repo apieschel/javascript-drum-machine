@@ -9,8 +9,8 @@ const snare = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1
 const snareSide = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_snare_sidestick.wav?1550690555484');
 const conga = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_conga.wav?1550690555716');
 const congaHigh = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_conga_high.wav?1550690555911');
-const highHat = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Ftom2.wav?1548794295629');
-const openHat = new Audio('https://cdn.glitch.com/24841964-d2fb-4c37-a68b-67ab4e207431%2Fcowbell1.wav?1548794296801');
+const highHat = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_hihat.wav?1550690556072');
+const openHat = new Audio('https://cdn.glitch.com/cc093c8e-9559-4f24-a71e-df60d5b1502c%2FMT52_openhat.wav?1550690556269');
 
 const data = {
   step: 0,
