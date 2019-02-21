@@ -132,7 +132,6 @@ setInterval(function() {
 (function setupButtonClicking() {
   addEventListener("click", function(e) {
     let p = { x: e.offsetX, y: e.offsetY };
-    console.log(p);
     data.tracks.forEach(function(track, row) {
       track.steps.forEach(function(on, column) {
         if(isPointInButton(p, column, row)) {
@@ -145,7 +144,14 @@ setInterval(function() {
   // Record button click event
   document.getElementById("record").addEventListener("click", function() {
     // Source: https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/
-    let canvasStream = document.getElementById("screen").captureStream();
-    console.log(canvasStream);
+    const canvasStream = document.getElementById("screen").captureStream();
+    const mediaRecorder = new MediaRecorder(canvasStream);
+    const audioChunks = [];
+    mediaRecorder.start();
+
+    mediaRecorder.addEventListener("dataavailable", event => {
+      audioChunks.push(event.data);
+      console.log(audioChunks);
+    });
   });
 })();
