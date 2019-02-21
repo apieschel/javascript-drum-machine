@@ -144,8 +144,8 @@ setInterval(function() {
   
   // Record button click event
   document.getElementById("record").addEventListener("click", function() {
-    // Source: https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
-    
-    navigator.mediaDevices.enumerateDevices().then(function(devices) { console.log(devices); });
+    // Source: https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/
+    let canvasStream = document.getElementById("screen").captureStream();
+    console.log(canvasStream);
   });
 })();
