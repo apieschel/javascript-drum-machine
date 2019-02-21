@@ -128,7 +128,7 @@ setInterval(function() {
   requestAnimationFrame(draw);
 })();
 
-// handle events
+// handle click events on tracks
 (function setupButtonClicking() {
   addEventListener("click", function(e) {
     let p = { x: e.offsetX, y: e.offsetY };
@@ -139,6 +139,17 @@ setInterval(function() {
           track.steps[column] = !on;    
         }
       });
+    });
+  });
+  
+  // Record button click event
+  document.getElementById("record").addEventListener("click", function() {
+    console.log("You're recording!");
+    
+    navigator.mediaDevices.getUserMedia({ audio: true })
+    .then(stream => {
+      const mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.start();
     });
   });
 })();
