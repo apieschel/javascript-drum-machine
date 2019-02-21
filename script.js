@@ -144,12 +144,9 @@ setInterval(function() {
   
   // Record button click event
   document.getElementById("record").addEventListener("click", function() {
+    // Source: https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
     console.log("You're recording!");
     
-    navigator.mediaDevices.getUserMedia({ audio: true })
-    .then(stream => {
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.start();
-    });
+    console.log(navigator.mediaDevices);
   });
 })();
