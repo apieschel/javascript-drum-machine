@@ -23,54 +23,6 @@ const data = {
            createTrack(green, openHat)]
 };
 
-/*
-function createSineWave(audio, duration) {
-  let oscillator = audio.createOscillator();
-  oscillator.type = "sine";
-  
-  oscillator.start(audio.currentTime);
-  oscillator.stop(audio.currentTime + duration);
-  
-  return oscillator;
-};
-
-function rampDown(audio, item, startValue, duration) {
-  item.setValueAtTime(startValue, audio.currentTime);
-  item.exponentialRampToValueAtTime(0.01, audio.currentTime + duration);
-};
-
-function createAmplifier(audio, startValue, duration) {
-  let amplifier = audio.createGain();
-  rampDown(audio, amplifier.gain, startValue, duration);
-  return amplifier;
-};
-
-function chain(items) {
-  for(let i = 0; i < items.length - 1; i++) {
-    items[i].connect(items[i + 1]);
-  }
-};
-
-function note(audio, frequency) {
-  return function() {
-    let duration = 1;
-    let sineWave = createSineWave(audio, duration);
-    sineWave.frequency.value = frequency;
-    chain([sineWave, createAmplifier(audio, 0.2, duration), audio.destination]);
-  }
-};
-
-function kick(audio, frequency) {
-  return function() {
-    let duration = 2;
-    let sineWave = createSineWave(audio, duration);
-    rampDown(audio, sineWave.frequency, 160, duration);
-    
-    chain([sineWave, createAmplifier(audio, 0.4, duration), audio.destination]);
-  }
-};
-*/
-
 function createTrack(color, playSound) {
   let steps = [];
   for(let i = 0; i < 16; i++) {
