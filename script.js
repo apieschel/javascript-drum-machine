@@ -69,6 +69,7 @@ setInterval(function() {
     .forEach(function(track) {
       let clone = track.playSound.cloneNode(true);
       clone.play(); 
+      clone.remove();
     });
 }, 100);
 
