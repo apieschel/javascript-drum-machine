@@ -158,20 +158,24 @@ function update() {
   });
   
   // Record button click event
-  /*
   document.getElementById("record").addEventListener("click", function() {
-    // Source: https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/
-    const canvasStream = document.getElementById("screen").captureStream();
-    const mediaRecorder = new MediaRecorder(canvasStream);
-    const audioChunks = [];
-    mediaRecorder.start();
-
-    mediaRecorder.addEventListener("dataavailable", event => {
-      audioChunks.push(event.data);
-      console.log(audioChunks);
+    rec.record();
+    console.log("I'm recording.");
+  });
+  
+  document.getElementById("stop").addEventListener("click", function() {
+    rec.stop();
+    console.log("Stopped recording.");
+  });
+  
+  document.getElementById("wav").addEventListener("click", function() {  
+    rec.exportWAV(function(blob) {
+      const audio = document.createElement("audio");
+      audio.src = blob;
+      document.querySelector(".container").append(audio);
+      console.log(blob);
     });
   });
-  */
   
   document.getElementById("midi").addEventListener("click", function() {
     midi = !midi; 
