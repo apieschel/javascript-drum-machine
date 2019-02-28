@@ -45,11 +45,9 @@ let interval = setInterval(function() {
       request.onload = function() {
         ac.decodeAudioData(request.response, function(buffer) {
           buffer = buffer;
-          console.log(buffer);
         
           const gain = ac.createGain();
           const playSound = ac.createBufferSource();
-          playSound.playbackRate.value = 1;
           playSound.buffer = buffer;
           console.log(playSound.buffer);
           playSound.connect(gain);
@@ -58,8 +56,7 @@ let interval = setInterval(function() {
           playSound.start(0);
 
           clone.remove();
-        });
-        console.log("sent");       
+        });     
       }
       
       request.send();
@@ -132,8 +129,29 @@ function getMIDIMessage(message) {
           .filter(function(track) { return track.steps[data.step]; })
           .forEach(function(track) {
             let clone = track.playSound.cloneNode(true);
-            clone.play(); 
-            clone.remove();
+            let buffer;
+      
+            const request = new XMLHttpRequest();
+            request.open('GET', track.playSound.src, true);
+            request.responseType = 'arraybuffer';
+            request.onload = function() {
+              ac.decodeAudioData(request.response, function(buffer) {
+                buffer = buffer;
+
+                const gain = ac.createGain();
+                const playSound = ac.createBufferSource();
+                playSound.buffer = buffer;
+                console.log(playSound.buffer);
+                playSound.connect(gain);
+                gain.connect(recorderNode);
+                gain.connect(ac.destination);
+                playSound.start(0);
+
+                clone.remove();
+              });     
+            }
+
+            request.send();
           });
       } else {
         
