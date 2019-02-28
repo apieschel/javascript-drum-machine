@@ -102,7 +102,17 @@ function getMIDIMessage(message) {
         } else {
           count = count + 1;
         }
-        console.log(count);
+        
+        data.step = (data.step + 1) % data.tracks[0].steps.length;
+        
+        data.tracks
+          .filter(function(track) { return track.steps[data.step]; })
+          .forEach(function(track) {
+            let clone = track.playSound.cloneNode(true);
+            clone.play(); 
+            clone.remove();
+          });   
+        
       } else {
         
       }
