@@ -2,6 +2,8 @@ const stream = new MediaStream();
 console.log(stream);
 const source = new AudioContext();
 console.log(source);
+const track = new MediaStreamTrack();
+console.log(track);
 //source.createMediaStreamSource(stream);
 //const rec = new Recorder(source);
 
