@@ -1,5 +1,7 @@
-const source = document.
-const rec = new Recorder(source)
+const stream = new MediaStream();
+const source = new AudioContext();
+source.createMediaStreamSource(stream);
+const rec = new Recorder(source);
 
 // source: http://drum-machine.maryrosecook.com/
 const BUTTON_SIZE = 26;
