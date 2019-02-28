@@ -27,6 +27,8 @@ body, html {
 
 .instructions {
   color: white;
+  font-size: 18px;
+  line-height: 1.5;
   margin: 0 auto;
   margin-bottom: 25px;
   width: 600px;
