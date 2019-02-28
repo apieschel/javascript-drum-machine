@@ -1,3 +1,6 @@
+const source = document.
+const rec = new Recorder(source)
+
 // source: http://drum-machine.maryrosecook.com/
 const BUTTON_SIZE = 26;
 const screen = document.getElementById("screen").getContext("2d");
