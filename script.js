@@ -39,6 +39,18 @@ let interval = setInterval(function() {
     .forEach(function(track) {
       let clone = track.playSound.cloneNode(true);
       clone.play(); 
+      
+      const gain = ac.createGain();
+		  gain.gain.value = 0.7;
+		  const playSound = ac.createBufferSource();
+		  playSound.playbackRate.value = 1;
+		  playSound.buffer = clone.buffer;
+      console.log(playSound.buffer);
+		  playSound.connect(gain);
+		  gain.connect(recorderNode);
+		  gain.connect(ac.destination);
+		  playSound.start(0);
+    
       clone.remove();
     });
 }, 100);
@@ -161,14 +173,6 @@ function update() {
   document.getElementById("record").addEventListener("click", function() {
     rec.record();
     console.log("I'm recording.");
-    
-    const gain = ac.createGain();
-    gain.gain.value = 0.7;
-    const playSound = ac.createBufferSource();
-    playSound.connect(gain);
-    gain.connect(recorderNode);
-    gain.connect(ac.destination);
-    playSound.start(0);
   });
   
   document.getElementById("stop").addEventListener("click", function() {
