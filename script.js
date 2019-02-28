@@ -80,7 +80,6 @@ function onMIDISuccess(midiAccess) {
 
   const inputs = midiAccess.inputs;
   const outputs = midiAccess.outputs;
-  console.log(inputs);
   console.log(outputs);
 
   for (var input of midiAccess.inputs.values()) {
@@ -110,7 +109,8 @@ function getMIDIMessage(message) {
             let clone = track.playSound.cloneNode(true);
             clone.play(); 
             clone.remove();
-          });    
+          });
+        console.log(message);
       } else {
         
       }
@@ -128,7 +128,17 @@ function onMIDIFailure() {
 // update 
 function update() {
   if(midi === false) {
-    location.reload();
+    interval = setInterval(function() {
+      data.step = (data.step + 1) % data.tracks[0].steps.length;
+
+      data.tracks
+        .filter(function(track) { return track.steps[data.step]; })
+        .forEach(function(track) {
+          let clone = track.playSound.cloneNode(true);
+          clone.play(); 
+          clone.remove();
+        });
+    }, 100);
   } else {
     navigator.requestMIDIAccess()
     .then(onMIDISuccess, onMIDIFailure);
