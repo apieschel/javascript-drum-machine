@@ -1,6 +1,5 @@
 const ac = new AudioContext();
 const recorderNode = ac.createGain();
-recorderNode.gain.value = 0.7;
 const rec = new Recorder(recorderNode);
 
 // source: http://drum-machine.maryrosecook.com/
@@ -198,8 +197,10 @@ function update() {
       const url = URL.createObjectURL(blob);
       audio.src = url;
       audio.controls = "true";
-      document.querySelector(".container").append(audio);
-      console.log(blob);
+      const flex = document.createElement("div");
+      flex.class = "flex-container";
+      flex.append(audio);
+      document.querySelector(".container").append(flex);
     });
   });
   
