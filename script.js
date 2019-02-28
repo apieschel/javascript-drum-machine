@@ -24,6 +24,20 @@ const data = {
 };
 
 let midi = false;
+let count = 0;
+
+let interval = setInterval(function() {
+  data.step = (data.step + 1) % data.tracks[0].steps.length;
+
+  data.tracks
+    .filter(function(track) { return track.steps[data.step]; })
+    .forEach(function(track) {
+      let clone = track.playSound.cloneNode(true);
+      clone.play(); 
+      clone.remove();
+    });
+  console.log(midi);
+}, 100);
 
 function createTrack(color, playSound) {
   let steps = [];
@@ -62,10 +76,51 @@ function isPointInButton(p, column, row) {
            p.y > b.y + BUTTON_SIZE);
 };
 
+function onMIDISuccess(midiAccess) {
+  console.log(midiAccess);
+
+  const inputs = midiAccess.inputs;
+  const outputs = midiAccess.outputs;
+  console.log(inputs);
+  console.log(outputs);
+
+  for (var input of midiAccess.inputs.values()) {
+    input.onmidimessage = getMIDIMessage;
+  }
+}
+
+function getMIDIMessage(message) {
+  const command = message.data[0];
+  const note = message.data[1];
+  const velocity = (message.data.length > 2) ? message.data[2] : 0; // a velocity value might not be included with a noteOff command
+
+  switch (command) {
+    case 144: // noteOn
+      if (velocity > 0) {	
+        if(count === 16) {
+          count = 1;
+        } else {
+          count = count + 1;
+        }
+        console.log(count);
+      } else {
+        
+      }
+      break;
+    case 128: // noteOff
+        break;
+    // we could easily expand this switch statement to cover other types of commands such as controllers or sysex
+  }
+}
+
+function onMIDIFailure() {
+  console.log('Could not access your MIDI devices.');
+}
+
 // update 
 function update() {
   if(midi === false) {
-    setInterval(function() {
+    interval = setInterval(function() {
       data.step = (data.step + 1) % data.tracks[0].steps.length;
 
       data.tracks
@@ -78,7 +133,8 @@ function update() {
       console.log(midi);
     }, 100);
   } else {
-    console.log("hey now");
+    navigator.requestMIDIAccess()
+    .then(onMIDISuccess, onMIDIFailure);
   }
 }
 
@@ -122,8 +178,9 @@ function update() {
   document.getElementById("midi").addEventListener("click", function() {
     midi = !midi; 
     console.log(midi);
+    clearInterval(interval);
+    data.step = 0;
     update();
   });
   
-  update();
 })();
