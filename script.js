@@ -161,6 +161,14 @@ function update() {
   document.getElementById("record").addEventListener("click", function() {
     rec.record();
     console.log("I'm recording.");
+    
+    const gain = ac.createGain();
+    gain.gain.value = 0.7;
+    const playSound = ac.createBufferSource();
+    playSound.connect(gain);
+    gain.connect(recorderNode);
+    gain.connect(ac.destination);
+    playSound.start(0);
   });
   
   document.getElementById("stop").addEventListener("click", function() {
@@ -171,7 +179,9 @@ function update() {
   document.getElementById("wav").addEventListener("click", function() {  
     rec.exportWAV(function(blob) {
       const audio = document.createElement("audio");
-      audio.src = blob;
+      const url = URL.createObjectURL(blob);
+      audio.src = url;
+      audio.controls = "true";
       document.querySelector(".container").append(audio);
       console.log(blob);
     });
