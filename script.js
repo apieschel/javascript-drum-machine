@@ -75,7 +75,7 @@ function isPointInButton(p, column, row) {
            p.y > b.y + BUTTON_SIZE);
 };
 
-function onMIDISuccess(midiAccess) {
+function onMIDISuccess(midiAccess, midiOptions) {
   console.log(midiAccess);
 
   const inputs = midiAccess.inputs;
@@ -128,7 +128,7 @@ function onMIDIFailure() {
 // update 
 function update() {
   if(midi === false) {
-    console.log(MIDIPort);
+    console.log(navigator.MIDIport);
   } else {
     navigator.requestMIDIAccess()
     .then(onMIDISuccess, onMIDIFailure);
