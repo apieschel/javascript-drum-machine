@@ -110,7 +110,7 @@ function getMIDIMessage(message) {
             clone.play(); 
             clone.remove();
           });
-        console.log(message);
+        //console.log(message);
       } else {
         
       }
@@ -128,17 +128,7 @@ function onMIDIFailure() {
 // update 
 function update() {
   if(midi === false) {
-    interval = setInterval(function() {
-      data.step = (data.step + 1) % data.tracks[0].steps.length;
-
-      data.tracks
-        .filter(function(track) { return track.steps[data.step]; })
-        .forEach(function(track) {
-          let clone = track.playSound.cloneNode(true);
-          clone.play(); 
-          clone.remove();
-        });
-    }, 100);
+    console.log(MIDIPort);
   } else {
     navigator.requestMIDIAccess()
     .then(onMIDISuccess, onMIDIFailure);
