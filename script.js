@@ -36,7 +36,6 @@ let interval = setInterval(function() {
       clone.play(); 
       clone.remove();
     });
-  console.log(midi);
 }, 100);
 
 function createTrack(color, playSound) {
@@ -85,7 +84,7 @@ function onMIDISuccess(midiAccess) {
   console.log(outputs);
 
   for (var input of midiAccess.inputs.values()) {
-    input.onmidimessage = getMIDIMessage;
+      input.onmidimessage = getMIDIMessage;
   }
 }
 
@@ -111,8 +110,7 @@ function getMIDIMessage(message) {
             let clone = track.playSound.cloneNode(true);
             clone.play(); 
             clone.remove();
-          });   
-        
+          });    
       } else {
         
       }
@@ -140,7 +138,6 @@ function update() {
           clone.play(); 
           clone.remove();
         });
-      console.log(midi);
     }, 100);
   } else {
     navigator.requestMIDIAccess()
@@ -187,7 +184,6 @@ function update() {
   
   document.getElementById("midi").addEventListener("click", function() {
     midi = !midi; 
-    console.log(midi);
     clearInterval(interval);
     data.step = 0;
     update();
