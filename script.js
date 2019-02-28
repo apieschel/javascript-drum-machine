@@ -1,7 +1,9 @@
 const stream = new MediaStream();
+console.log(stream);
 const source = new AudioContext();
-source.createMediaStreamSource(stream);
-const rec = new Recorder(source);
+console.log(source);
+//source.createMediaStreamSource(stream);
+//const rec = new Recorder(source);
 
 // source: http://drum-machine.maryrosecook.com/
 const BUTTON_SIZE = 26;
