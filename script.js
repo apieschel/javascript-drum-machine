@@ -76,11 +76,8 @@ function isPointInButton(p, column, row) {
 };
 
 function onMIDISuccess(midiAccess, midiOptions) {
-  console.log(midiAccess);
-
   const inputs = midiAccess.inputs;
   const outputs = midiAccess.outputs;
-  console.log(outputs);
 
   for (var input of midiAccess.inputs.values()) {
       input.onmidimessage = getMIDIMessage;
@@ -110,7 +107,6 @@ function getMIDIMessage(message) {
             clone.play(); 
             clone.remove();
           });
-        //console.log(message);
       } else {
         
       }
@@ -128,7 +124,7 @@ function onMIDIFailure() {
 // update 
 function update() {
   if(midi === false) {
-    console.log(navigator.MIDIport);
+    location.reload();
   } else {
     navigator.requestMIDIAccess()
     .then(onMIDISuccess, onMIDIFailure);
@@ -177,6 +173,9 @@ function update() {
     clearInterval(interval);
     data.step = 0;
     update();
+    if(midi) {
+      document.getElementById("midi").innerHTML = "MIDI ON";
+    } 
   });
   
 })();
