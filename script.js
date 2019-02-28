@@ -23,6 +23,8 @@ const data = {
            createTrack(green, openHat)]
 };
 
+let midi = false;
+
 function createTrack(color, playSound) {
   let steps = [];
   for(let i = 0; i < 16; i++) {
@@ -61,17 +63,24 @@ function isPointInButton(p, column, row) {
 };
 
 // update 
-setInterval(function() {
-  data.step = (data.step + 1) % data.tracks[0].steps.length;
-  
-  data.tracks
-    .filter(function(track) { return track.steps[data.step]; })
-    .forEach(function(track) {
-      let clone = track.playSound.cloneNode(true);
-      clone.play(); 
-      clone.remove();
-    });
-}, 100);
+function update() {
+  if(midi === false) {
+    setInterval(function() {
+      data.step = (data.step + 1) % data.tracks[0].steps.length;
+
+      data.tracks
+        .filter(function(track) { return track.steps[data.step]; })
+        .forEach(function(track) {
+          let clone = track.playSound.cloneNode(true);
+          clone.play(); 
+          clone.remove();
+        });
+      console.log(midi);
+    }, 100);
+  } else {
+    console.log("hey now");
+  }
+}
 
 // draw 
 (function draw() {
@@ -95,6 +104,7 @@ setInterval(function() {
   });
   
   // Record button click event
+  /*
   document.getElementById("record").addEventListener("click", function() {
     // Source: https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/
     const canvasStream = document.getElementById("screen").captureStream();
@@ -107,4 +117,13 @@ setInterval(function() {
       console.log(audioChunks);
     });
   });
+  */
+  
+  document.getElementById("midi").addEventListener("click", function() {
+    midi = !midi; 
+    console.log(midi);
+    update();
+  });
+  
+  update();
 })();
