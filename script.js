@@ -184,11 +184,15 @@ function update() {
   document.getElementById("record").addEventListener("click", function() {
     rec.record();
     console.log("I'm recording.");
+    document.getElementById("record").className = "hidden";
+    document.getElementById("stop").className = "";
   });
   
   document.getElementById("stop").addEventListener("click", function() {
     rec.stop();
     console.log("Stopped recording.");
+    document.getElementById("stop").className = "hidden";
+    document.getElementById("wav").className = "";
   });
   
   document.getElementById("wav").addEventListener("click", function() {  
@@ -198,9 +202,12 @@ function update() {
       audio.src = url;
       audio.controls = "true";
       const flex = document.createElement("div");
-      flex.class = "flex-container";
+      flex.className = "flex-container";
       flex.append(audio);
       document.querySelector(".container").append(flex);
+      
+      document.getElementById("wav").className = "hidden";
+      document.getElementById("record").className = "";
     });
   });
   
