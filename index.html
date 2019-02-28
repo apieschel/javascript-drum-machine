@@ -14,8 +14,16 @@
   </head>  
   <body>
     <div class="container">
+      <div class="instructions">
+        Note: Web browsers aren't the best at keeping time. If you want an accurate BPM, 
+        then you can hook up a sampler or a drum machine to your computer to keep time. 
+        Tell the drum machine to play 16 straight sixteenth notes, 
+        and this machine in the browser will update its count every time your external 
+        drum machine plays a note. Click the "MIDI" button, and try it out! 
+        While MIDI is off, the browser will keep time on its own.
+      </div>
       <div class="flex-container">
-        <canvas id="screen" width="637" height="390"></canvas>
+        <canvas id="screen" width="637" height="350"></canvas>
       </div>
       <!--<button id="record">Record</button>-->
       <div class="flex-container">
