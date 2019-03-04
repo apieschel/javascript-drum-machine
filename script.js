@@ -200,7 +200,13 @@ function update() {
   
 document.addEventListener("keypress", function (e) {
     e = e || window.event;
-    console.log(e.keyCode);
+    if(e.keyCode === 99) {
+      data.tracks.forEach(function(track, row) {
+      track.steps.forEach(function(on, column) {
+          track.steps[column] = false;    
+      });
+    });
+    }
 });
   
   // Record button click event
