@@ -198,6 +198,11 @@ function update() {
     });
   });
   
+document.addEventListener("keypress", function (e) {
+    e = e || window.event;
+    console.log(e.keyCode);
+});
+  
   // Record button click event
   document.getElementById("record").addEventListener("click", function() {
     rec.record();
